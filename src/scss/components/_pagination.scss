@@ -1,0 +1,35 @@
+// BLOGS pagination
+.wp-pagenavi {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  margin-bottom: 120px;
+
+  a,
+  .current {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: $primary-color-900;
+    background: $neutral-color-50;
+    border: none;
+
+    &:hover {
+      text-decoration: none;
+      background: $neutral-color-100;
+    }
+  }
+
+  // a {
+  //   border: 1px solid $neutral-color-200;
+  // }
+
+  .current {
+    background: $primary-color-500;
+    color: $white;
+  }
+}

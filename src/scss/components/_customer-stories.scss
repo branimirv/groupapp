@@ -1,0 +1,314 @@
+.section-slider {
+  position: relative;
+  overflow: hidden;
+
+  // Hide slides before Slick initializes to prevent layout shifts
+  .slick-not-init {
+    opacity: 0;
+    visibility: hidden;
+    min-height: 400px; // Prevent layout shift by maintaining minimum height
+    position: relative;
+
+    @media (max-width: 992px) {
+      min-height: 300px;
+    }
+
+    // Loading indicator
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    // Show first slide if JavaScript is disabled
+    .no-js & {
+      opacity: 1;
+      visibility: visible;
+
+      &::after {
+        display: none;
+      }
+
+      > div:first-child {
+        display: block;
+      }
+
+      > div:not(:first-child) {
+        display: none;
+      }
+    }
+
+    &.slick-initialized {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease-in-out;
+      min-height: auto;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &.slick-fallback {
+      opacity: 1;
+      visibility: visible;
+      min-height: auto;
+
+      &::after {
+        display: none;
+      }
+
+      > div:first-child {
+        display: block;
+      }
+
+      > div:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  // Hide background when slider is not initialized
+  &:has(.slick-not-init) {
+    &::before {
+      display: none;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/tabs-content-bg.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  // Ensure smooth transitions for slides
+  .slick-slide {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .block-slider {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 120px;
+
+    @media (max-width: 992px) {
+      padding-top: 80px;
+    }
+  }
+
+  .block-gradient {
+    font-size: 1.5rem;
+    font-weight: $font-weight-semibold;
+    color: $white;
+    text-transform: capitalize;
+    padding: 0.25rem 0.5rem;
+    background-color: #d851db;
+    display: inline-block;
+  }
+
+  .block-txt {
+    max-width: 514px;
+
+    h2 {
+      font-size: $h2;
+      color: $white;
+      margin-top: 1.5rem;
+
+      @media (max-width: 992px) {
+        font-size: 3rem;
+      }
+    }
+
+    &__description {
+      font-size: 1.25rem;
+      color: $white;
+      margin-top: 1rem;
+      display: -webkit-box;
+      line-clamp: 2; /* Limit to 2 lines */
+      -webkit-line-clamp: 2; /* Limit to 2 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* Optional: set a width or max-width as needed */
+      max-width: 100%;
+    }
+  }
+
+  .block-img {
+    max-width: 514px;
+    max-height: 385px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .slick-dots {
+    position: relative;
+    bottom: 0;
+    margin-top: 80px;
+    padding-bottom: 40px;
+
+    @media (max-width: 992px) {
+      margin-top: 40px;
+      padding-bottom: 20px;
+    }
+
+    li {
+      height: auto;
+      width: auto;
+      button {
+        background-color: rgba($white, $alpha: 0.5);
+        border-radius: 50%;
+        height: 16px;
+        width: 16px;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      &.slick-active {
+        button {
+          background-color: $white;
+          opacity: 1;
+          width: 32px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+.section-read-story {
+  .theme {
+    color: #8e51db;
+    font-size: 1.5rem;
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+  }
+
+  .title {
+    font-size: $h4;
+    font-weight: $font-weight-semibold;
+    color: $neutral-color-900;
+  }
+
+  .block-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block-text-p {
+    font-size: 1.25rem;
+    color: $neutral-color-600;
+    display: -webkit-box;
+    line-clamp: 3; /* Limit to 3 lines */
+    -webkit-line-clamp: 3; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Optional: set a width or max-width as needed */
+    max-width: 100%;
+  }
+}
+
+.section-read-story {
+  margin-top: 80px;
+  .row {
+    row-gap: 80px;
+    padding-bottom: 120px;
+
+    @media (max-width: 992px) {
+      padding-bottom: 80px;
+    }
+  }
+
+  .block-read-min {
+    .block-img {
+      margin-bottom: 2.5rem;
+    }
+    .text {
+      font-size: 1.25rem;
+      color: $neutral-color-600;
+      display: -webkit-box;
+      line-clamp: 3; /* Limit to 3 lines */
+      -webkit-line-clamp: 3; /* Limit to 2 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* Optional: set a width or max-width as needed */
+      max-width: 100%;
+      margin-bottom: 0;
+      font-weight: $font-weight-medium;
+    }
+
+    .read-story {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+      font-weight: $font-weight-medium;
+      color: $primary-color-500;
+      align-self: start;
+
+      &:hover {
+        color: $primary-color-500;
+        text-decoration: none;
+        border-bottom: 1px solid $primary-color-500;
+      }
+    }
+
+    .v2_person {
+      display: none;
+    }
+  }
+}
+
+.block-read-min {
+  .block-img {
+    img {
+      max-height: 320px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+.offer--faq {
+  padding-block: 100px;
+  position: relative;
+
+  @media (max-width: 992px) {
+    padding-block: 80px;
+  }
+
+  .container {
+    max-width: 1176px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  &__wrapper {
+    gap: 84px;
+  }
+
+  &__content {
+    flex: 1;
+
+    h2 {
+      font-size: $h2;
+      line-height: 1.1;
+      color: $neutral-color-900;
+      letter-spacing: -3%;
+      text-align: center;
+
+      @media (max-width: 992px) {
+        font-size: 40px;
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: $neutral-color-700;
+      margin-top: 40px;
+      max-width: 765px;
+      width: 100%;
+      margin-inline: auto;
+      text-align: center;
+
+      @media (max-width: 992px) {
+        font-size: 1.25rem;
+        text-align: left;
+      }
+    }
+  }
+
+  &__list-wrapper {
+    margin-top: 40px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    max-width: 960px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid $neutral-color-200;
+
+    &:last-child {
+      border-bottom: 1px solid $neutral-color-200;
+    }
+
+    .offer--faq__list-item__question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      cursor: pointer;
+
+      p {
+        font-size: 1.5rem;
+        line-height: 1.1;
+        color: $neutral-color-900;
+        letter-spacing: -3%;
+        font-weight: $font-weight-medium;
+      }
+    }
+
+    .offer--faq__list-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, margin-top 0.3s ease-out,
+        padding-top 0.3s ease-out, padding-bottom 0.3s ease-out;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      p {
+        font-size: 1.125rem;
+        line-height: 1.4;
+        color: $neutral-color-700;
+        margin: 0;
+      }
+    }
+
+    &.is-open {
+      .offer--faq__list-item__answer {
+        max-height: 2000px; // Fallback value, JavaScript will set the actual heighte
+        margin-top: 16px;
+        padding-bottom: 0;
+      }
+    }
+
+    &__icon {
+      font-size: 1.5rem;
+      color: $neutral-color-900;
+      font-weight: $font-weight-medium;
+    }
+  }
+}

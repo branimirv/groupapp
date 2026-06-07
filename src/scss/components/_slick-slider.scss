@@ -1,0 +1,577 @@
+// Slick Slider Custom Styles
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Custom arrow styles
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &:hover,
+  &:focus {
+    color: transparent;
+    outline: none;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &:before {
+    font-family: "slick";
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0.75;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.slick-prev {
+  left: 25px;
+
+  &:before {
+    content: "←";
+  }
+}
+
+.slick-next {
+  right: 25px;
+
+  &:before {
+    content: "→";
+  }
+}
+
+// Custom dots styles
+.slick-dots {
+  position: absolute;
+  bottom: 25px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  z-index: 10;
+
+  li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+
+      &:hover,
+      &:focus {
+        outline: none;
+
+        &:before {
+          opacity: 1;
+        }
+      }
+
+      &:before {
+        font-family: "slick";
+        font-size: 6px;
+        line-height: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        content: "•";
+        text-align: center;
+        opacity: 0.25;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
+    &.slick-active button:before {
+      opacity: 0.75;
+      color: white;
+    }
+  }
+}
+
+// Slider variants
+.slider,
+.slider-multiple,
+.testimonial-slider,
+.hero-slider {
+  .slick-slide {
+    outline: none;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+// Hero slider specific styles
+.hero-slider {
+  .slick-slide {
+    position: relative;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media (min-width: 768px) {
+      min-height: 600px;
+    }
+
+    @media (min-width: 1024px) {
+      min-height: 700px;
+    }
+  }
+
+  .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 5;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+  }
+
+  .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+}
+
+// Testimonial slider specific styles
+.testimonial-slider {
+  .slick-slide {
+    padding: 40px 20px;
+    text-align: center;
+
+    .testimonial-content {
+      max-width: 800px;
+      margin: 0 auto;
+
+      blockquote {
+        font-size: 1.5rem;
+        font-style: italic;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+
+        @media (min-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .author-info {
+          text-align: left;
+
+          h4 {
+            margin: 0;
+            font-weight: 600;
+          }
+
+          span {
+            color: #666;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Multiple items slider specific styles
+.slider-multiple {
+  .slick-slide {
+    padding: 0 15px;
+
+    .slide-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .slide-content {
+        padding: 20px;
+
+        h3 {
+          margin: 0 0 10px 0;
+          font-size: 1.25rem;
+        }
+
+        p {
+          margin: 0;
+          color: #666;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    width: 40px;
+    height: 40px;
+
+    &:before {
+      font-size: 16px;
+    }
+  }
+
+  .slick-prev {
+    left: 15px;
+  }
+
+  .slick-next {
+    right: 15px;
+  }
+
+  .slick-dots {
+    bottom: 15px;
+
+    li {
+      width: 15px;
+      height: 15px;
+      margin: 0 3px;
+
+      button {
+        width: 15px;
+        height: 15px;
+
+        &:before {
+          width: 15px;
+          height: 15px;
+          line-height: 15px;
+          font-size: 5px;
+        }
+      }
+    }
+  }
+}
+
+// Comment Section
+.section-comments {
+  margin-top: 120px;
+
+  @media (max-width: 992px) {
+    overflow: hidden;
+    margin-top: 80px;
+  }
+
+  + .banner--start {
+    @media (max-width: 992px) {
+      margin-top: 24px !important;
+    }
+  }
+
+  h2 {
+    font-size: $h2;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+    color: $neutral-color-900;
+
+    @media (max-width: 992px) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 2.4rem;
+    }
+  }
+
+  .pop-content {
+    border: 1px solid $neutral-color-200;
+    box-shadow: 0px 4px 8px 0px #0000000d;
+    border-radius: 40px;
+    padding: 40px;
+    cursor: pointer;
+    background: linear-gradient(137.07deg, #f2f5ff 6.25%, #ffffff 87.98%);
+  }
+
+  .pop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .open-pop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment__icon {
+    margin-bottom: 32px;
+  }
+
+  .comment__description {
+    font-size: 1.25rem;
+    color: $neutral-color-700;
+    line-height: 1.4;
+    margin-bottom: 32px;
+    display: -webkit-box;
+    line-clamp: 5; /* Limit to 2 lines */
+    -webkit-line-clamp: 5; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Optional: set a width or max-width as needed */
+    max-width: 100%;
+  }
+
+  .pers {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+
+    img {
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0px 4px 20px 0px #00000026;
+    }
+
+    .pers-info {
+      p {
+        margin: 0;
+      }
+
+      .t-one {
+        margin-bottom: 8px;
+        font-size: 1.25rem;
+        line-height: 1.4;
+        color: $neutral-color-900;
+      }
+
+      .t-two {
+        font-size: 0.825rem;
+        line-height: 1.4;
+        color: $neutral-color-700;
+      }
+    }
+  }
+
+  .slick-track {
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  .slick-slide {
+    width: 392px !important;
+    margin: 0 16px !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  .slick-list {
+    padding: 0 -16px;
+    overflow: visible;
+  }
+
+  .slick-slider__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    .slick-slider__buttonPrev,
+    .slick-slider__buttonNext {
+      height: 56px;
+      width: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: 1px solid #dcdde1;
+      background: #f7f8f9;
+    }
+  }
+}
+
+// modal in slider
+.modal-body {
+  padding: 40px;
+}
+.modal-dialog {
+  @media (min-width: 992px) {
+    max-width: 640px;
+    width: 100%;
+  }
+}
+.modal-content {
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #00000026;
+  background: linear-gradient(137.07deg, #f2f5ff 6.25%, #ffffff 87.98%);
+
+  .modal__iconAndClose {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .close {
+      outline: none;
+      opacity: 1;
+
+      span {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        font-weight: 300;
+        color: #000000;
+        opacity: 1;
+      }
+    }
+  }
+
+  .block-comments.coment-pop .pop {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 2rem;
+
+    .text p {
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: $neutral-color-700;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .pers {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-top: 2rem;
+
+      img {
+        height: 56px;
+        width: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0px 4px 20px 0px #00000026;
+        margin-block: 10px;
+      }
+
+      .pers-info {
+        .t-one {
+          color: $neutral-color-900;
+          line-height: 1.4;
+          font-size: 1.25rem;
+          margin-bottom: 8px;
+        }
+
+        .t-two {
+          color: $neutral-color-700;
+          line-height: 1.4;
+          font-size: 0.825rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

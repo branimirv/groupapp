@@ -1,0 +1,11 @@
+.branding-and-customization {
+  @media (min-width: 993px) {
+    padding-bottom: 0;
+  }
+
+  .lms__images--mobile {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+}

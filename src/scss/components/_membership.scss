@@ -1,0 +1,81 @@
+.membership {
+  padding: 0 0 120px;
+  color: $neutral-color-900;
+
+  @media (max-width: 992px) {
+    padding: 0 0 80px;
+  }
+
+  h2 {
+    font-size: $h2;
+
+    @media (max-width: 992px) {
+      font-size: 3rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    max-width: 765px;
+    margin-top: 24px;
+    color: $neutral-color-700;
+
+    @media (max-width: 992px) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__wrapper {
+    background-image: none;
+    padding: 0;
+
+    .lms__images {
+      max-width: 560px;
+      width: 100%;
+
+      @media (min-width: 993px) {
+        padding-block: 32px;
+      }
+    }
+  }
+
+  .tabs {
+    li {
+      &:hover {
+        a {
+          background-color: #e8edff;
+        }
+      }
+      &.active {
+        a {
+          border-color: $primary-color-900;
+        }
+      }
+    }
+    li a {
+      color: $neutral-color-900;
+    }
+  }
+
+  .accordion {
+    .accordion-content {
+    }
+  }
+
+  .accordion-header .accordion-title p {
+    color: $neutral-color-900;
+  }
+
+  .accordion-header .accordion-sign {
+    color: $white;
+    background-color: $primary-color-500;
+  }
+
+  .accordion-content p {
+    color: $neutral-color-700;
+  }
+
+  .accordion-item {
+    border-bottom-color: $neutral-color-100;
+  }
+}

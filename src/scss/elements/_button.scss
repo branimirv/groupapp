@@ -1,0 +1,144 @@
+.btn {
+  font-size: 1rem;
+  font-weight: $font_weight_semibold;
+  padding-block: 0.875rem;
+  padding-inline: 1.25rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--start {
+    background-color: $primary-color-500;
+    color: $white;
+    border-radius: 36px;
+    border: 4px solid #e8edff;
+    display: flex;
+    align-items: center;
+    transition: border-color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    white-space: nowrap;
+
+    &:hover {
+      border-color: #365de6;
+      color: $white;
+    }
+  }
+
+  &--demo {
+    background: #f2f5ff;
+    border-radius: 28px;
+    padding: 4px;
+
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-inline: 20px;
+      height: 100%;
+      width: 100%;
+      white-space: nowrap;
+      color: $primary-color-500;
+      background-color: transparent;
+      border-radius: 28px;
+      border: 2px solid $primary-color-500;
+      transition:
+        background-color 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+        color 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+        border-color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    &:hover span,
+    &:focus-visible span {
+      background-color: $primary-color-500;
+      color: $white;
+    }
+  }
+
+  &--withArrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    height: auto;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: transparent;
+    }
+
+    &:hover {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $primary-color-900;
+        transition: width 0.3s ease;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 1rem;
+      font-weight: $font_weight_semibold;
+      color: $neutral-color-900;
+    }
+  }
+
+  &--readMore {
+    color: $primary-color-500;
+    font-weight: $font_weight_medium;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0;
+
+    &:hover {
+      color: $primary-color-500;
+      text-decoration: none;
+      border-bottom: 1px solid $primary-color-500;
+    }
+  }
+
+  &--connect {
+    border: 2px solid $primary-color-500;
+    border-radius: 12px;
+    padding: 0.875rem 1.25rem;
+    color: $primary-color-500;
+    font-weight: $font_weight_semibold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba($primary-color-500, 0.1);
+      text-decoration: none;
+      color: $primary-color-500;
+    }
+  }
+
+  &--claimOffer {
+    background-color: $primary-color-500;
+    gap: 10px;
+    border-radius: 12px;
+
+    span {
+      color: $white;
+      margin-top: 4px;
+    }
+  }
+}
+
+.btn__block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

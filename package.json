@@ -1,0 +1,68 @@
+{
+  "name": "groupapp-theme",
+  "version": "1.0.0",
+  "description": "GroupApp WordPress Theme with modern build tools",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "dev:open": "webpack serve --mode development --open",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "watch": "webpack --watch --mode development",
+    "clean": "rm -rf dist",
+    "clean:build": "npm run clean && npm run build",
+    "clean:dev": "npm run clean && npm run build:dev",
+    "analyze": "webpack-bundle-analyzer dist/js/*.js",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "webpack",
+    "scss",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "autoprefixer": "^10.4.16",
+    "babel-loader": "^9.1.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.31",
+    "postcss-loader": "^7.3.3",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.89.0",
+    "webpack-bundle-analyzer": "^4.9.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-manifest-plugin": "^5.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

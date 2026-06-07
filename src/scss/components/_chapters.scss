@@ -1,0 +1,236 @@
+.chapters-toc {
+  min-width: 280px;
+  max-width: 320px;
+  position: sticky;
+  width: 100%;
+  align-self: start;
+  top: 7rem;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  min-width: 32;
+  background-color: $white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 992px) {
+    max-width: 100%;
+    top: 16px;
+    margin-bottom: 1rem;
+  }
+
+  &__card {
+    padding-block: 20px;
+
+    @media (max-width: 992px) {
+      // Collapsed by default on mobile
+      .chapters-toc__list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      // Expanded state
+      &.is-expanded {
+        .chapters-toc__list {
+          max-height: 2000px; // Large enough to fit all content
+        }
+
+        .chapters-toc__toggle svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 20px;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 992px) {
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    margin-bottom: 0 !important;
+    flex: 1;
+  }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: $neutral-color-900;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 992px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  ol {
+    margin-bottom: 0;
+    padding: 0;
+
+    li {
+      padding-inline: 20px;
+      border-bottom: 1px solid $neutral-color-200;
+      padding-block: 12px;
+      transition: background-color 0.3s ease;
+      margin-top: 0;
+      border-left: 2px solid transparent;
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      &::marker {
+        color: $neutral-color-900;
+        font-size: 1.25rem;
+        font-weight: $font_weight_semibold;
+      }
+
+      &.active {
+        border-left: 2px solid $primary-color-500;
+
+        &::marker,
+        .chapters-toc__link {
+          color: $primary-color-500;
+        }
+
+        .chapters-toc__desc {
+          height: auto;
+          opacity: 1;
+        }
+      }
+    }
+
+    .chapters-toc__link {
+      color: $neutral-color-900;
+      font-size: 1.25rem;
+      font-weight: $font_weight_semibold;
+    }
+
+    .chapters-toc__desc {
+      color: $neutral-color-700;
+      font-size: 1rem;
+      line-height: 1.4;
+      font-weight: $font_weight_light;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+  }
+}
+
+.chapters-with-ad {
+  @media (min-width: 993px) {
+    position: sticky;
+    top: 7rem;
+    align-self: start;
+    min-width: 320px;
+    max-width: 320px;
+    width: 100%;
+
+    display: grid;
+    // Overlap ad + TOC in the same grid cell
+    > .ad-with-chapter,
+    > .chapters-toc.desktop {
+      grid-area: 1 / 1;
+      position: static; // override .chapters-toc sticky
+    }
+
+    // Hide TOC by default (prevents flash before JS/ad loads)
+    .chapters-toc.desktop {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      will-change: opacity;
+    }
+
+    .ad-with-chapter > div {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    &.is-toc-visible {
+      .ad-with-chapter {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+      }
+
+      .chapters-toc.desktop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+
+    &.has-ad {
+      .ad-with-chapter,
+      .chapters-toc.desktop {
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+        will-change: opacity;
+      }
+
+      .chapters-toc.desktop {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      &.is-toc-visible {
+        .ad-with-chapter {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        .chapters-toc.desktop {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .chapters-with-ad {
+    position: sticky;
+    top: 16px;
+    align-self: flex-start;
+    z-index: 2;
+    width: 100%;
+
+    .ad-with-chapter {
+      display: none !important;
+    }
+
+    .chapters-toc.desktop {
+      display: block;
+      position: static; // wrapper handles sticky
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  }
+}

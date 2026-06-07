@@ -1,0 +1,24 @@
+.offer--header {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    a {
+      display: block;
+      max-width: 154px;
+    }
+
+    a img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .btn--claimOffer {
+    max-height: 44px;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,185 @@
+.use-case__revenue {
+  padding-block: 80px;
+
+  @media (max-width: 992px) {
+    padding-block: 40px;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    font-weight: $font_weight_semibold;
+
+    &::before {
+      content: "";
+      background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.33117 4.16663H12.9395C13.4312 4.16663 13.8978 4.38329 14.2228 4.76663L18.1395 9.46663C18.3978 9.77496 18.3978 10.225 18.1395 10.5333L14.2228 15.2333C13.9062 15.6166 13.4395 15.8333 12.9395 15.8333H3.33117C2.4145 15.8333 1.6645 15.0833 1.6645 14.1666V5.83329C1.6645 4.91663 2.4145 4.16663 3.33117 4.16663Z" fill="%23365DE6"/></svg>');
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, $h3);
+    line-height: 1.1;
+    font-weight: $font_weight_regular;
+    margin-top: 1rem;
+    letter-spacing: -3%;
+    max-width: 960px;
+    width: 100%;
+    text-align: center;
+    margin-inline: auto;
+
+    span {
+      display: inline-block;
+      color: $primary-color-500;
+    }
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: $font_weight_light;
+    color: $neutral-color-600;
+    margin-top: 1.5rem;
+    text-align: center;
+    max-width: 765px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 40px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    padding: 20px;
+    padding-bottom: 40px;
+    background-color: $neutral-color-50;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    &-subtitle {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      font-weight: $font_weight_semibold;
+      color: $primary-color-500;
+      text-transform: uppercase;
+      letter-spacing: 10%;
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    &-price {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: $font_weight_semibold;
+      color: $neutral-color-900;
+      letter-spacing: -3%;
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    &-description {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      letter-spacing: -3%;
+      font-weight: $font_weight_light;
+      color: $neutral-color-600;
+      margin-top: 0.5rem;
+
+      @media (max-width: 992px) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__full-card {
+    margin-top: 1.125rem;
+    background-color: $neutral-color-50;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 20px;
+
+    &-subtitle-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+
+      @media (max-width: 992px) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+    }
+
+    img {
+      @media (max-width: 992px) {
+        border-radius: 10px;
+      }
+    }
+
+    &-subtitle {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      font-weight: $font_weight_semibold;
+      color: $primary-color-500;
+      text-transform: uppercase;
+      letter-spacing: 10%;
+      line-height: 1.4;
+      margin-bottom: 0;
+
+      &:first-child {
+        font-size: 1.25rem;
+        font-weight: $font_weight_semibold;
+        color: $primary-color-500;
+      }
+
+      &:last-child {
+        font-size: 0.875rem;
+        font-weight: $font_weight_semibold;
+        color: $neutral-color-700;
+      }
+    }
+
+    &-title {
+      font-size: 1.25rem;
+      line-height: 1;
+      font-weight: $font_weight_semibold;
+      color: $neutral-color-900;
+      letter-spacing: -3%;
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    &-description {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      letter-spacing: -3%;
+      font-weight: $font_weight_light;
+      color: $neutral-color-900;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+  }
+}

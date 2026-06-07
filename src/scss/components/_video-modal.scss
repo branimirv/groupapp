@@ -1,0 +1,52 @@
+.hero {
+  .video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: #000000, $alpha: 0.4);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &.active {
+      display: flex;
+    }
+
+    &__inner {
+      max-width: 800px;
+      width: 100%;
+      padding-inline: 24px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+
+    &__close {
+      z-index: 1001;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: block;
+      font-size: 2.5rem;
+      color: $white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-end;
+    }
+
+    &__content {
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border: none; /* optional */
+    }
+  }
+}

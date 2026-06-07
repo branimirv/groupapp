@@ -1,0 +1,108 @@
+.creators {
+  padding-top: 1.75rem;
+
+  @media (max-width: 992px) {
+    overflow: hidden;
+  }
+
+  p {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: $font_weight_semibold;
+    color: $neutral-color-900;
+  }
+
+  &__gallery {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    @media (max-width: 992px) {
+      // Reset flex properties for slider
+      display: block;
+      margin-top: 1.5rem;
+
+      // Slick slider overrides
+      &.slick-slider {
+        .slick-list {
+          overflow: visible;
+          margin: 0;
+          // padding: 0 20px;
+        }
+
+        .slick-track {
+          display: flex;
+          align-items: center;
+        }
+
+        .slick-slide {
+          // padding: 0 15px;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          width: 200px; // Fixed width for each slide
+
+          img {
+            margin-inline: auto;
+          }
+
+          > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+
+            img {
+              max-height: 100%;
+              max-width: 100%;
+              object-fit: contain;
+              transition: all 0.3s ease;
+            }
+          }
+
+          // All slides have the same appearance
+          &:not(.slick-center) {
+            opacity: 1;
+            transform: scale(1);
+
+            img {
+              filter: none;
+            }
+          }
+
+          // Center slide is fully visible and prominent
+          &.slick-center {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+
+            img {
+              filter: none;
+            }
+          }
+        }
+
+        // Ensure smooth transitions
+        &.slick-initialized {
+          .slick-slide {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+        }
+      }
+    }
+
+    // Desktop styles
+    @media (min-width: 993px) {
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          max-height: 60px;
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}

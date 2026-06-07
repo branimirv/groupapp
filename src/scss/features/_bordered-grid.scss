@@ -1,0 +1,107 @@
+.features-bordered-grid {
+  padding-block: 80px;
+
+  @media (max-width: 992px) {
+    padding-block: 40px;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    justify-content: center;
+
+    &::before {
+      content: "";
+      background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.33117 4.16663H12.9395C13.4312 4.16663 13.8978 4.38329 14.2228 4.76663L18.1395 9.46663C18.3978 9.77496 18.3978 10.225 18.1395 10.5333L14.2228 15.2333C13.9062 15.6166 13.4395 15.8333 12.9395 15.8333H3.33117C2.4145 15.8333 1.6645 15.0833 1.6645 14.1666V5.83329C1.6645 4.91663 2.4145 4.16663 3.33117 4.16663Z" fill="%23365DE6"/></svg>');
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, $h3);
+    line-height: 1.1;
+    font-weight: $font_weight_regular;
+    margin-top: 1rem;
+    text-align: center;
+    letter-spacing: -3%;
+    max-width: 720px;
+    width: 100%;
+    margin-inline: auto;
+
+    span {
+      display: inline-block;
+      color: $primary-color-500;
+    }
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: $font_weight_light;
+    color: $neutral-color-600;
+    margin-top: 1.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 1px solid #ebecf0;
+    border-top: 1px solid #ebecf0;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 16px;
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #ebecf0;
+
+    @media (max-width: 992px) {
+      padding: 40px 20px;
+    }
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+
+    &-title {
+      font-size: 1.25rem;
+      line-height: 1.4;
+      font-weight: $font_weight_medium;
+      color: $neutral-color-900;
+      letter-spacing: -3%;
+    }
+
+    &-description {
+      font-size: 1rem;
+      line-height: 1.4;
+      font-weight: $font_weight_light;
+      color: $neutral-color-600;
+      margin-top: 0.5rem;
+
+      @media (max-width: 992px) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

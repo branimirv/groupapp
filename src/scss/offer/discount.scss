@@ -1,0 +1,79 @@
+.offer--discount {
+  padding-block: 100px;
+  position: relative;
+
+  @media (max-width: 992px) {
+    padding-block: 80px;
+  }
+
+  .container {
+    max-width: 1568px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  h2 {
+    font-size: $h2;
+    line-height: 1.1;
+    color: $neutral-color-900;
+    text-align: center;
+    letter-spacing: -3%;
+
+    @media (max-width: 992px) {
+      font-size: 40px;
+    }
+  }
+
+  &__big_description {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: $neutral-color-700;
+    text-align: center;
+    margin-top: 40px;
+    max-width: 765px;
+    width: 100%;
+    margin-inline: auto;
+
+    @media (max-width: 992px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__small_description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+
+    @media (max-width: 992px) {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 2;
+      color: $neutral-color-900;
+      @media (max-width: 992px) {
+        text-align: center;
+        line-height: 1.4;
+        font-size: 1rem;
+      }
+
+      span {
+        font-weight: $font-weight-semibold;
+      }
+    }
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+  }
+
+  .btn {
+    margin-top: 40px;
+    align-self: center;
+    width: fit-content;
+    margin-inline: auto;
+  }
+}

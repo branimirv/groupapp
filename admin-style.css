@@ -1,0 +1,4 @@
+.acf-image-uploader .image-wrap img[src$=".svg"] {
+    min-height: 30px;
+    min-width: 30px;
+}

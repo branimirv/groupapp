@@ -1,0 +1,44 @@
+.blog-category-intro {
+  &__inner {
+    padding-block: 80px 40px;
+
+    @media (max-width: 992px) {
+      padding-block: 40px;
+    }
+  }
+
+  &__content {
+    max-width: 524px;
+    width: 100%;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, $h3);
+    line-height: 1;
+    font-weight: $font_weight_regular;
+    margin: 0;
+    letter-spacing: -3%;
+    color: $neutral-color-900;
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin: 1.5rem 0 0;
+    color: $neutral-color-600;
+    font-weight: $font_weight_light;
+  }
+}
+
+.page-template-category-blog {
+  .blog-list--category {
+    padding-bottom: 80px;
+
+    @media (max-width: 992px) {
+      padding-bottom: 40px;
+    }
+  }
+}

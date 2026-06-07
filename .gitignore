@@ -1,0 +1,27 @@
+# Dependencies (reinstall locally with npm install)
+node_modules/
+vendor/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Secrets
+.env
+.env.*
+
+# Tooling caches
+.cache/
+.webpack/
+.eslintcache
+.stylelintcache
+
+# IDE
+.idea/
+.vscode/

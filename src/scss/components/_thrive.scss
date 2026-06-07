@@ -1,0 +1,130 @@
+.thrive-with-groupapp {
+  margin-top: 120px;
+
+  @media (max-width: 992px) {
+    margin-top: 80px;
+  }
+
+  &__wrapper {
+    padding: 80px 40px;
+    background-image: url("../images/tabs-content-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+
+    @media (max-width: 992px) {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+
+  &__content {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+
+    @media (max-width: 992px) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  }
+
+  &__accordions {
+    width: 560px;
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+
+    .accordion-sign {
+      color: $white;
+    }
+  }
+
+  h2 {
+    font-size: $h2;
+    color: $white;
+  }
+  // Accordion styles
+  .accordion-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .accordion-sign {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: $font-weight-regular;
+      margin-right: 16px;
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      background-color: $primary-color-900;
+      border-radius: 50%;
+    }
+
+    .accordion-title {
+      flex: 1;
+      margin: 0;
+
+      p {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: $font-weight-semibold;
+        color: $white;
+      }
+    }
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+    padding: 0;
+
+    &.active {
+      max-height: 200px; // Adjust based on content
+      opacity: 1;
+      padding: 0 0 20px 48px; // Left padding to align with title
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: $primary-color-100;
+    }
+  }
+
+  .tab-content__items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

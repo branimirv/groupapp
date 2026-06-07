@@ -1,0 +1,73 @@
+.section-terms {
+  padding-top: 80px;
+  padding-bottom: 120px;
+
+  @media (max-width: 992px) {
+    padding-bottom: 80px;
+    padding-top: 100px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $neutral-color-900;
+  }
+
+  a {
+    color: $primary-color-500;
+  }
+
+  p {
+    color: $neutral-color-600;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    font-weight: $font-weight-light;
+
+    @media (max-width: 992px) {
+      margin-bottom: 16px;
+    }
+
+    strong {
+      color: $neutral-color-900;
+      font-weight: $font-weight-regular;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: $font-weight-regular;
+    color: $neutral-color-900;
+  }
+
+  ul,
+  ol {
+    padding-left: 1rem;
+    list-style-position: outside;
+
+    li {
+      padding-left: 1rem;
+      font-size: 1rem;
+      color: $neutral-color-600;
+      line-height: 1.4;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: $font-weight-light;
+
+      strong {
+        font-weight: $font-weight-regular;
+        color: $neutral-color-900;
+      }
+    }
+  }
+
+  table td {
+    font-size: 1rem;
+    color: $neutral-color-600;
+    line-height: 1.4;
+    font-weight: $font-weight-light;
+  }
+}

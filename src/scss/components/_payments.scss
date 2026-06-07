@@ -1,0 +1,7 @@
+.payments {
+  &__images {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+}

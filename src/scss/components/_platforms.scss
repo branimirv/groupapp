@@ -1,0 +1,145 @@
+.platforms {
+  margin-top: 120px;
+
+  @media (max-width: 992px) {
+    margin-top: 0;
+  }
+
+  &__wrapper {
+    background: linear-gradient(137.07deg, #f2f5ff 6.25%, #ffffff 87.98%);
+    border: 1px solid #dcdde1;
+    border-radius: 40px;
+    padding-inline: 40px;
+
+    @media (max-width: 992px) {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+
+  h2 {
+    padding-top: 80px;
+    font-size: $h2;
+    color: $neutral-color-900;
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: $neutral-color-700;
+    margin-top: 24px;
+    max-width: 765px;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    margin-top: 40px;
+
+    // Mobile layout - show only on mobile
+    &--mobile {
+      display: none;
+
+      @media (max-width: 992px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+
+    // Desktop layout - show only on desktop
+    &--desktop {
+      @media (max-width: 992px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__image {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__items {
+    max-width: 488px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: start;
+
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+
+    &::before {
+      content: "";
+      background-image: url("../images/circle-check.svg");
+      height: 32px;
+      width: 32px;
+      min-width: 32px;
+      margin-right: 1.25rem;
+      display: inline-block;
+    }
+
+    p {
+      &:first-child {
+        font-size: 1.5rem;
+        line-height: 1.1;
+        color: $neutral-color-900;
+        font-weight: $font-weight-semibold;
+      }
+
+      &:last-child {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        color: $neutral-color-700;
+      }
+    }
+  }
+
+  &__appleAndAndroid {
+    display: flex;
+    gap: 16px;
+    padding-left: 52px;
+    margin-top: 12px;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    &.mobile {
+      display: none;
+      @media (max-width: 992px) {
+        display: flex;
+        padding-left: 0;
+        justify-content: center;
+        margin-top: 24px;
+      }
+    }
+
+    // Mobile specific styling
+    .platforms__content--mobile & {
+      padding-left: 0;
+      justify-content: center;
+      margin-top: 24px;
+    }
+  }
+}

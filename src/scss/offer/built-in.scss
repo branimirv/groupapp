@@ -1,0 +1,199 @@
+.offer--built-in {
+  padding-block: 100px 0;
+  position: relative;
+  overflow: visible;
+
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+  }
+
+  @media (max-width: 992px) {
+    padding-block: 80px 0;
+  }
+
+  .container {
+    max-width: 1176px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  h2 {
+    font-size: $h2;
+    line-height: 1.1;
+    color: $neutral-color-900;
+    text-align: center;
+
+    @media (max-width: 992px) {
+      font-size: 40px;
+    }
+  }
+
+  &__description {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: $neutral-color-700;
+    text-align: center;
+    margin-top: 40px;
+    max-width: 765px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0;
+    margin-top: 40px;
+    // Prevent jump on initialization
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      display: block;
+      grid-template-columns: none;
+      // Prevent layout shift when converting from grid to slider
+      min-height: 200px;
+    }
+
+    // Slick slider styles for mobile
+    @media (max-width: 768px) {
+      // Override global slick touch-action to allow both directions
+      &.slick-slider {
+        touch-action: pan-y pan-x !important; // Allow both horizontal and vertical
+      }
+
+      .slick-slide {
+        height: auto;
+        margin-right: 16px;
+        padding: 0 8px;
+        // Prevent layout shifts
+        min-height: 1px;
+      }
+
+      .slick-track {
+        display: flex !important;
+        // Prevent layout shifts
+        align-items: stretch;
+      }
+
+      .slick-list {
+        overflow: visible;
+        margin: 0 -8px;
+        // Override global touch-action to allow both directions
+        touch-action: pan-y pan-x !important;
+        // Prevent momentum scrolling conflicts
+        -webkit-overflow-scrolling: touch;
+      }
+
+      // Fix first slide position
+      .slick-slide:first-child {
+        // Ensure first slide is positioned correctly
+        position: relative;
+      }
+
+      // Slick slider dots styling
+      .slick-dots {
+        position: relative;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 40px;
+        list-style: none;
+        padding: 0;
+        bottom: unset;
+
+        li {
+          width: 10px;
+          height: 10px;
+          margin: 0 8px 0 0;
+
+          &:not(:last-child) {
+            margin: 0 8px 0 0;
+          }
+
+          button {
+            width: 10px;
+            height: 10px;
+            padding: 0;
+            border-radius: 50%;
+            border: none;
+            background: $primary-color-500;
+            opacity: 0.5;
+            cursor: pointer;
+            font-size: 0;
+            line-height: 0;
+            transition: all 0.3s ease;
+
+            &:before {
+              display: none;
+            }
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+
+          &.slick-active {
+            width: 20px;
+
+            button {
+              opacity: 1;
+              width: 20px;
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__list-item {
+    display: flex !important;
+    flex-direction: column;
+    background-color: $primary-color-50;
+    padding: 40px 24px;
+    border-radius: 12px;
+    gap: 16px;
+
+    @media (max-width: 768px) {
+      height: 100%;
+    }
+
+    &__icon {
+      width: 56px;
+      height: 56px;
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      background-color: $white;
+      border-radius: 12px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: $neutral-color-900;
+      font-weight: 600;
+    }
+
+    &__description {
+      font-size: 1.125rem;
+      line-height: 1.4;
+      color: $neutral-color-900;
+    }
+  }
+}

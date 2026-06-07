@@ -1,0 +1,235 @@
+.offer--customers {
+  padding-block: 100px 0;
+  position: relative;
+
+  @media (max-width: 992px) {
+    padding-block: 80px 0;
+  }
+
+  .container {
+    max-width: 1568px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  &__header {
+    text-align: center;
+
+    h2 {
+      font-size: $h2;
+      line-height: 1.1;
+      color: $neutral-color-900;
+      text-align: center;
+      letter-spacing: -3%;
+
+      @media (max-width: 992px) {
+        font-size: 40px;
+      }
+    }
+
+    p {
+      max-width: 765px;
+      width: 100%;
+      margin-inline: auto;
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: $neutral-color-700;
+      text-align: center;
+      margin-top: 40px;
+    }
+  }
+
+  &__list {
+    padding: 0;
+    list-style: none;
+    max-width: 1128px;
+    width: 100%;
+    margin-inline: auto;
+    margin-top: 40px;
+
+    &.slick-dotted.slick-slider {
+      margin-bottom: 0;
+    }
+
+    .slick-list {
+      @media (max-width: 768px) {
+        margin: 0 -8px;
+      }
+    }
+
+    .slick-track {
+      display: flex !important;
+
+      @media (min-width: 993px) {
+        max-height: 500px;
+      }
+    }
+
+    .slick-slide {
+      height: auto;
+      margin-right: 16px;
+
+      @media (max-width: 768px) {
+        margin-right: 0;
+        padding: 0 8px;
+      }
+    }
+    // Slick slider dots styling
+    .slick-dots {
+      display: flex !important;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      list-style: none;
+      padding: 0;
+      bottom: unset;
+
+      li {
+        width: 1rem;
+        height: 1rem;
+        margin: 0 8px 0 0;
+
+        &:not(:last-child) {
+          margin: 0 8px 0 0;
+        }
+
+        button {
+          width: 1rem;
+          height: 1rem;
+          padding: 0;
+          border-radius: 50%;
+          border: none;
+          background: $primary-color-500;
+          opacity: 0.5;
+          cursor: pointer;
+          font-size: 0;
+          line-height: 0;
+          transition: all 0.3s ease;
+          outline: none;
+          -webkit-tap-highlight-color: transparent;
+
+          &:before {
+            display: none;
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        &.slick-active {
+          width: 2rem;
+
+          button {
+            opacity: 1;
+            width: 2rem;
+            border-radius: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  &__list-item {
+    display: flex !important;
+    max-width: 1128px;
+    width: 100%;
+    margin-inline: auto;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f7f8f9;
+
+    @media (max-width: 768px) {
+      margin: 0 8px;
+    }
+  }
+
+  &__list-item__wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+
+  &__list-item__image {
+    min-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      min-width: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 500px;
+
+      @media (max-width: 768px) {
+        max-height: 354px;
+      }
+    }
+  }
+
+  &__list-item__content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+
+    @media (max-width: 768px) {
+      gap: 16px;
+      padding: 24px 40px;
+    }
+
+    &__description {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      color: $neutral-color-700;
+
+      @media (max-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  &__list-item__content__author {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+      line-height: 1.4;
+
+      &:first-child {
+        font-size: 1.5rem;
+        color: $neutral-color-900;
+        font-weight: 600;
+
+        @media (max-width: 768px) {
+          font-size: 1.25rem;
+        }
+      }
+
+      &:last-child {
+        font-size: 1.125rem;
+        color: $neutral-color-700;
+      }
+    }
+  }
+}

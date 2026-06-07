@@ -1,0 +1,120 @@
+.testimonials-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overscroll-behavior: contain;
+
+  &.is-active {
+    display: flex;
+    touch-action: none;
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba($black, 0.3);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    max-height: min(80vh, 720px);
+    overflow: auto;
+    background: $white;
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 300;
+    color: $neutral-color-900;
+    cursor: pointer;
+  }
+
+  &__author {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+  }
+
+  &__author-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__author-name,
+  &__author-position {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__author-name {
+    font-size: 1.25rem;
+    font-weight: $font_weight_regular;
+    color: $neutral-color-900;
+  }
+
+  &__author-position {
+    font-size: 1rem;
+    color: $neutral-color-600;
+    margin-top: 0.125rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: $font_weight_medium;
+    color: $neutral-color-900;
+    margin: 0 0 0.75rem;
+  }
+
+  &__body {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: $font_weight_light;
+    color: $neutral-color-900;
+    letter-spacing: -0.03em;
+
+    p {
+      margin: 0 0 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &--pricing-tooltip {
+    .testimonials-modal__dialog {
+      max-width: 520px;
+    }
+  }
+}

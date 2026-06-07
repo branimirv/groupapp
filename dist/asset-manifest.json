@@ -1,0 +1,12 @@
+{
+  "main.js": "js/main.js",
+  "admin.js": "js/admin.js",
+  "vendors.js": "js/vendors.js",
+  "images/blog-bg.png": "images/blog-bg.png",
+  "images/tabs-content-bg.png": "images/tabs-content-bg.png",
+  "images/tabs-content-bg.jpg": "images/tabs-content-bg.jpg",
+  "images/blog-bg.jpg": "images/blog-bg.jpg",
+  "images/offer-help-bg.png": "images/offer-help-bg.png",
+  "images/circle-check.svg": "images/circle-check.svg",
+  "images/play-button.svg": "images/play-button.svg"
+}

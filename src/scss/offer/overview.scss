@@ -1,0 +1,334 @@
+.offer {
+  &--overview {
+    padding-top: 100px;
+    overflow: visible;
+
+    @media (max-width: 992px) {
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 960px;
+      margin-inline: auto;
+    }
+
+    h2 {
+      font-size: $h2;
+      line-height: 1.1;
+      text-align: center;
+      letter-spacing: -3%;
+      color: $neutral-color-900;
+      margin-bottom: 40px;
+    }
+
+    // Navigation Slider (Tabs/Titles)
+    &__nav {
+      margin-bottom: 30px;
+
+      @media (min-width: 1193px) {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media (max-width: 1192px) {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; // Firefox
+        -ms-overflow-style: none; // IE and Edge
+        scroll-behavior: smooth;
+        gap: 8px;
+        padding-bottom: 8px;
+
+        &::-webkit-scrollbar {
+          display: none; // Chrome, Safari, Opera
+        }
+      }
+
+      @media (max-width: 768px) {
+        justify-content: flex-start;
+      }
+
+      .slick-list {
+        margin: 0 -8px;
+      }
+
+      .slick-slide {
+        padding: 0 8px;
+      }
+
+      &-item {
+        text-align: center;
+        padding: 12px 24px;
+        font-size: 1.125rem;
+        font-weight: $font-weight-semibold;
+        color: $neutral-color-900;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        flex-shrink: 0; // Prevent items from shrinking on mobile
+        letter-spacing: -2%;
+
+        &:hover {
+          color: $neutral-color-900;
+          background-color: $primary-color-100;
+        }
+
+        &.active {
+          border-color: $primary-color-900;
+        }
+      }
+
+      // Dots styling
+      .slick-dots {
+        position: relative;
+        bottom: auto;
+        margin-top: 24px;
+        text-align: center;
+
+        @media (min-width: 1193px) {
+          display: none !important;
+        }
+
+        li {
+          width: 12px;
+          height: 12px;
+          margin: 0 6px;
+
+          button {
+            width: 12px;
+            height: 12px;
+            padding: 0;
+
+            &:before {
+              content: "";
+              width: 12px;
+              height: 12px;
+              background-color: $neutral-color-400;
+              border-radius: 50%;
+              opacity: 1;
+            }
+          }
+
+          &.slick-active {
+            button:before {
+              background-color: $primary-color-500;
+              width: 24px;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    // Main Images Slider
+    &__images {
+      margin-top: 40px;
+
+      .slick-list {
+        margin: 0 -12px;
+        // Simpler touch-action - let Slick handle it
+        @media (max-width: 1192px) {
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+
+      .slick-track {
+        display: flex !important;
+        align-items: stretch;
+      }
+
+      .slick-slide {
+        padding: 0 12px;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+        cursor: pointer;
+        transform-origin: center;
+        height: auto;
+        display: flex;
+        padding-bottom: 40px;
+        // Prevent layout shifts
+        min-height: 1px;
+
+        @media (max-width: 992px) {
+          opacity: 1;
+        }
+
+        img {
+          width: 100%;
+          height: auto; // Changed from 100% to auto to prevent stretching
+          object-fit: contain; // Ensure image maintains aspect ratio
+          border-radius: 12px;
+          transition: transform 0.3s ease;
+          box-shadow: none;
+          display: block; // Prevent inline spacing issues
+        }
+
+        > div {
+          display: flex !important;
+          height: 100% !important;
+          // Prevent image stretching
+          align-items: flex-start;
+        }
+      }
+
+      .slick-active {
+        @media (min-width: 993px) {
+          opacity: 0.4;
+        }
+        @media (max-width: 992px) {
+          opacity: 1;
+        }
+      }
+
+      // Center slide styling (current)
+      .slick-current {
+        transform: scale(1);
+        z-index: 2;
+        opacity: 1;
+
+        img {
+          box-shadow: 0px 10px 28px 0px #0000001a;
+          transform: scale(1);
+        }
+      }
+
+      // Arrows styling
+      .slick-arrow {
+        width: 48px;
+        height: 48px;
+        z-index: 3;
+        background-color: $white;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+
+        &:before {
+          font-size: 20px;
+          color: $neutral-color-900;
+          opacity: 1;
+        }
+
+        &:hover {
+          background-color: $primary-color-500;
+          box-shadow: 0 6px 16px rgba($primary-color-500, 0.3);
+
+          &:before {
+            color: $white;
+          }
+        }
+
+        &.slick-prev {
+          left: -24px;
+        }
+
+        &.slick-next {
+          right: -24px;
+        }
+      }
+    }
+
+    &__image {
+      &-item {
+        display: flex !important;
+        height: auto !important; // Changed from 100% to auto to prevent stretching
+        align-items: flex-start; // Align to top to prevent stretching
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: auto; // Ensure image maintains aspect ratio
+          object-fit: contain;
+        }
+      }
+    }
+
+    // Responsive styles
+    @media (max-width: 1192px) {
+      padding-top: 80px;
+      h2 {
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+      }
+
+      &__nav {
+        margin-bottom: 24px;
+
+        &-item {
+          font-size: 1rem;
+          padding: 10px 20px;
+        }
+      }
+
+      &__images {
+        margin-top: 24px;
+
+        .slick-arrow {
+          width: 40px;
+          height: 40px;
+
+          &.slick-prev {
+            left: -16px;
+          }
+
+          &.slick-next {
+            right: -16px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 40px;
+        margin-bottom: 40px;
+      }
+
+      &__nav {
+        margin-bottom: 40px;
+
+        &-item {
+          font-size: 0.875rem;
+          padding: 8px 16px;
+        }
+      }
+
+      &__images {
+        margin-top: 20px;
+
+        .slick-list {
+          margin: 0 -8px;
+          overflow: visible;
+        }
+
+        .slick-slide {
+          padding: 0 8px;
+          opacity: 1;
+        }
+
+        .slick-arrow {
+          width: 36px;
+          height: 36px;
+
+          &:before {
+            font-size: 16px;
+          }
+
+          &.slick-prev {
+            left: -12px;
+          }
+
+          &.slick-next {
+            right: -12px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+body {
+  font-family: $font_main;
+  font-size: $font_base;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: $font_weight_regular;
+  color: #464760;
+  width: 100%;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: $font_weight_regular;
+}
+
+p {
+  font-size: $font_base;
+  line-height: 1.2;
+}
+
+.wp-singular ul,
+.wp-singular ol,
+.block-footer-menus ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
+.container {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  @media (max-width: 992px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+button {
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.site {
+  @media (max-width: 992px) {
+    overflow-x: hidden;
+  }
+}
+
+// .section-slider,
+// .section-sudy,
+// .section-blog-one,
+// .home_pp,
+// .section-pricing-one {
+//   padding-top: 80px;
+// }

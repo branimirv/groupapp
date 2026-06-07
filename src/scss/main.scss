@@ -1,0 +1,82 @@
+@import "variables/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+// Import variables globally (using @import for global scope)
+@import "variables/fonts";
+@import "variables/typography";
+@import "variables/colors";
+
+// Import other modules
+@import "base/normalize";
+@import "base/global";
+
+@import "layout/header";
+@import "layout/footer";
+
+@import "elements/button";
+
+@import "components/hero";
+@import "components/creators";
+@import "components/community";
+@import "components/lms";
+@import "components/membership";
+@import "components/slick-slider";
+@import "components/slider";
+@import "components/faq";
+@import "components/banner";
+@import "components/customer-stories";
+@import "components/customer-stories-single";
+@import "components/integrations";
+@import "components/single-integration";
+@import "components/blog";
+@import "components/pagination";
+@import "components/pricing";
+@import "components/automations";
+@import "components/platforms";
+@import "components/thrive";
+@import "components/payments";
+@import "components/branding";
+@import "components/video-modal";
+@import "components/category";
+@import "components/terms-and-privacy";
+@import "components/chapters";
+@import "components/tools";
+@import "components/program-delivery";
+@import "components/case-studies";
+@import "components/more-programs";
+@import "components/coaching-materials";
+@import "components/learning-experience";
+@import "components/branded-app";
+@import "components/integrations-home";
+@import "components/testimonials";
+@import "components/testimonials-modal";
+@import "components/cta";
+@import "components/404";
+// Offer template
+@import "offer/hero";
+@import "offer/overview";
+@import "offer/help";
+@import "offer/pricing";
+@import "offer/separator";
+@import "offer/launch";
+@import "offer/results";
+@import "offer/customers";
+@import "offer/built-in";
+@import "offer/discount";
+@import "offer/faq";
+@import "offer/footer";
+@import "offer/header";
+
+// Features template
+@import "features/hero";
+@import "features/cards3";
+@import "features/cards2";
+@import "features/reversed";
+@import "features/certificate";
+@import "features/bordered-grid";
+
+// Use case template
+@import "use-case/hero";
+@import "use-case/clear-grid";
+@import "use-case/revenue";
+@import "use-case/scale";
+@import "use-case/metrics";

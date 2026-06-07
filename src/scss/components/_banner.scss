@@ -1,0 +1,131 @@
+.section-demo {
+  @media (max-width: 992px) {
+    background-image: url("../images/tabs-content-bg.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+  }
+}
+
+.banner {
+  &--demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 90px 0;
+    background-image: url("../images/tabs-content-bg.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+
+    @media (max-width: 992px) {
+      background-image: none;
+    }
+
+    h2 {
+      color: $white;
+      font-size: $h2;
+
+      @media (max-width: 992px) {
+        font-size: 3rem;
+        text-align: center;
+      }
+    }
+
+    p {
+      margin: 20px 0;
+      max-width: 648px;
+      color: $white;
+      text-align: center;
+    }
+
+    .btn--demo {
+      background-color: rgba($white, 0.1);
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &--start {
+    margin-bottom: 120px;
+
+    @media (max-width: 992px) {
+      margin-bottom: 80px;
+    }
+
+    &__wrapper {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 90px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 40px;
+      color: $white;
+
+      @media (max-width: 992px) {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding-inline: 1.5rem;
+      }
+    }
+
+    h2 {
+      font-size: $h2;
+      margin-bottom: 20px;
+
+      @media (max-width: 992px) {
+        text-align: center;
+      }
+    }
+
+    &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .button--start__btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+
+  &--home {
+    margin-top: 120px;
+
+    @media (max-width: 992px) {
+      margin-top: 80px;
+    }
+  }
+}
+
+.single-post,
+.single {
+  .banner--start {
+    margin-top: 80px;
+
+    @media (max-width: 992px) {
+      margin-top: 40px;
+    }
+  }
+}

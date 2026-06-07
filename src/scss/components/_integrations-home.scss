@@ -1,0 +1,238 @@
+.integrations-home {
+  padding-block: 80px;
+
+  @media (max-width: 992px) {
+    padding-block: 40px;
+  }
+
+  &__content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0;
+    color: $neutral-color-600;
+
+    &::before {
+      content: "";
+      background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.33117 4.16663H12.9395C13.4312 4.16663 13.8978 4.38329 14.2228 4.76663L18.1395 9.46663C18.3978 9.77496 18.3978 10.225 18.1395 10.5333L14.2228 15.2333C13.9062 15.6166 13.4395 15.8333 12.9395 15.8333H3.33117C2.4145 15.8333 1.6645 15.0833 1.6645 14.1666V5.83329C1.6645 4.91663 2.4145 4.16663 3.33117 4.16663Z" fill="%23365DE6"/></svg>');
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, $h3);
+    letter-spacing: -0.03em;
+    margin: 0;
+    line-height: 1;
+
+    span {
+      display: inline-block;
+      color: $primary-color-500;
+    }
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: $font_weight_light;
+    color: $neutral-color-600;
+    margin: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  &__items-entry {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 12px;
+    border-radius: 6px;
+    background: $neutral-color-50;
+    font-size: 0.875rem;
+    font-weight: $font_weight_regular;
+    line-height: 1.3;
+    color: $neutral-color-900;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      box-shadow 0.25s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+
+    &:hover {
+      background: $neutral-color-100;
+    }
+
+    &.is-active {
+      color: $white;
+      background: $primary-color-500;
+      border-color: $primary-color-500;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-color-500;
+      outline-offset: 2px;
+    }
+  }
+
+  &__link {
+    margin-top: 0.25rem;
+  }
+
+  &__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__media--desktop {
+    display: none;
+
+    @media (min-width: 993px) {
+      display: flex;
+    }
+  }
+
+  &__media--mobile {
+    margin-top: 0.5rem;
+
+    @media (min-width: 993px) {
+      display: none;
+    }
+  }
+
+  &__images {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 560px;
+    margin-inline: auto;
+
+    @media (max-width: 992px) {
+      max-width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    &[hidden] {
+      display: none !important;
+    }
+  }
+
+  &__panel-preview {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 40px;
+  }
+}
+
+// TEMP: Disable integrations-home tabs until all category images are available.
+// Remove this block when re-enabling initIntegrationsHome() in main.js.
+.integrations-home__item {
+  pointer-events: none;
+  cursor: default;
+
+  &:hover,
+  &.is-active {
+    color: $neutral-color-900;
+    background: $neutral-color-50;
+    border-color: transparent;
+  }
+}

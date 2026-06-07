@@ -1,0 +1,245 @@
+.case-studies {
+  padding-block: 80px;
+
+  @media (max-width: 992px) {
+    padding-block: 40px;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1.5rem;
+
+    &::before {
+      content: "";
+      background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.33117 4.16663H12.9395C13.4312 4.16663 13.8978 4.38329 14.2228 4.76663L18.1395 9.46663C18.3978 9.77496 18.3978 10.225 18.1395 10.5333L14.2228 15.2333C13.9062 15.6166 13.4395 15.8333 12.9395 15.8333H3.33117C2.4145 15.8333 1.6645 15.0833 1.6645 14.1666V5.83329C1.6645 4.91663 2.4145 4.16663 3.33117 4.16663Z" fill="%23365DE6"/></svg>');
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, $h3);
+    letter-spacing: -0.03em;
+    max-width: 720px;
+    width: 100%;
+
+    span {
+      display: inline-block;
+      color: $primary-color-500;
+    }
+  }
+
+  &__titleAndLink {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+  }
+
+  &__slider {
+    margin-top: 2.5rem;
+    overflow: hidden;
+  }
+
+  &__slides {
+    $slide-spacing: 1.5rem;
+    $slide-spacing-half: $slide-spacing * 0.5;
+
+    &.slick-slider {
+      margin-bottom: 0;
+    }
+
+    // https://github.com/kenwheeler/slick/issues/582 — same margin on every slide (required for Slick width math)
+    .slick-list {
+      overflow: hidden;
+      margin: 0 -#{$slide-spacing-half};
+    }
+
+    &.slick-initialized {
+      .slick-slide {
+        float: left;
+        height: auto;
+        margin: 0 $slide-spacing-half;
+      }
+    }
+  }
+
+  &__slide-inner {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    background-color: $primary-color-50;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    padding: 40px;
+    display: grid !important;
+    grid-template-columns: 160px minmax(0, 1fr);
+    column-gap: 40px;
+    align-items: start;
+
+    .case-studies__slide-image {
+      grid-column: 1;
+      grid-row: 1;
+      display: block;
+      width: 160px;
+      height: 160px;
+      border-radius: 80px;
+      object-fit: cover;
+    }
+
+    > div {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+    }
+  }
+
+  &__slide {
+    height: auto;
+
+    &-subtitle {
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      font-size: 0.825rem;
+      line-height: 1.4;
+      letter-spacing: 0.1rem;
+      margin-bottom: 1.5rem;
+
+      &::before {
+        content: "";
+        background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.33117 4.16663H12.9395C13.4312 4.16663 13.8978 4.38329 14.2228 4.76663L18.1395 9.46663C18.3978 9.77496 18.3978 10.225 18.1395 10.5333L14.2228 15.2333C13.9062 15.6166 13.4395 15.8333 12.9395 15.8333H3.33117C2.4145 15.8333 1.6645 15.0833 1.6645 14.1666V5.83329C1.6645 4.91663 2.4145 4.16663 3.33117 4.16663Z" fill="%238E51DB"/></svg>');
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        margin-right: 8px;
+      }
+    }
+
+    &-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 0.5rem;
+      margin-bottom: 1.5rem;
+
+      @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &-stat {
+      border-left: 1px solid $neutral-color-200;
+      padding-inline: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      @media (max-width: 992px) {
+        padding-inline: 0;
+        border-left: none;
+      }
+
+      &-metrics {
+        font-size: 2.5rem;
+        line-height: 1.4;
+        font-weight: $font_weight_semibold;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+      }
+
+      &-description {
+        font-size: 0.825rem;
+        line-height: 1.4;
+        font-weight: $font_weight_light;
+        color: $neutral-color-700;
+        margin-bottom: 0;
+      }
+    }
+
+    &-description {
+      font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+      line-height: 1.4;
+      font-weight: $font_weight_light;
+      color: $neutral-color-900;
+      margin-bottom: 1.5rem;
+      letter-spacing: -3%;
+    }
+
+    &-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      &-image {
+        display: none;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      &-text {
+        min-width: 0;
+      }
+
+      p {
+        margin-bottom: 0;
+        line-height: 1.4;
+        font-weight: $font_weight_regular;
+      }
+
+      &-name {
+        color: $neutral-color-900;
+        font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+      }
+
+      &-position {
+        color: $neutral-color-600;
+        font-size: 1rem;
+      }
+    }
+
+    &-link {
+      display: inline-flex;
+    }
+  }
+
+  @media (max-width: 992px) {
+    &__slide-inner {
+      grid-template-columns: minmax(0, 1fr);
+      column-gap: 0;
+      padding: 40px 20px;
+    }
+
+    &__slide-image {
+      display: none;
+    }
+
+    &__slide-author-image {
+      display: block;
+    }
+  }
+
+  .slider__arrows {
+    margin-right: 1.5rem;
+
+    @media (max-width: 992px) {
+      margin-right: 0;
+    }
+  }
+}
