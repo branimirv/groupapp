@@ -68,7 +68,7 @@
   <div class="footer footer--bottom">
     <div class="container">
       <div class="footer--bottom__wrapper">
-        <p class="privacy">All rights reserved <?php echo date("Y"); ?>. GroupApp</p>
+        <p class="privacy">© <?php echo date("Y"); ?> GroupApp. All rights reserved.</p>
         <div class="footer--bottom__privacy-links">
             <?php dynamic_sidebar( 'Footer 5' ); ?>
         </div>
