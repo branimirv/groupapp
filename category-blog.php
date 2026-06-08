@@ -39,7 +39,7 @@ get_header();
   </div>
 </section>
 
-<?php get_template_part( 'template-parts/blog', 'category-filter' ); ?>
+<?php get_template_part( 'template-parts/blog', 'category-filter', array( 'prepend_all_posts' => true ) ); ?>
 
 <?php
 $paged = max(1, (int) get_query_var('paged'));

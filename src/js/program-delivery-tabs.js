@@ -3,6 +3,7 @@ const NAV = ".program-delivery__tabs-nav";
 const INDICATOR = ".program-delivery__tabs-indicator";
 const TAB_BTN = ".program-delivery__tab";
 const PANEL = ".program-delivery__panel";
+const DESCRIPTION = "[data-program-delivery-description]";
 const ACCORDION_TRIGGER = "[data-program-delivery-accordion-trigger]";
 const ACCORDION_PANEL = "[data-program-delivery-accordion-panel]";
 
@@ -47,6 +48,17 @@ function setActiveTab(root, index) {
   });
 
   moveIndicator(nav, indicator, tabs[index]);
+  setActiveDescriptions(root, index);
+}
+
+function setActiveDescriptions(root, index) {
+  const descriptions = [...root.querySelectorAll(DESCRIPTION)];
+
+  descriptions.forEach((description, i) => {
+    const isActive = i === index;
+    description.classList.toggle(ACTIVE_PANEL, isActive);
+    description.hidden = !isActive;
+  });
 }
 
 /**
@@ -154,6 +166,8 @@ function setActiveAccordionItem(root, index) {
 
     closeAccordionPanel(panel);
   });
+
+  setActiveDescriptions(root, index);
 }
 
 function scrollTabIntoView(nav, tab) {

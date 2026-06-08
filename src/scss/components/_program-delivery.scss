@@ -151,7 +151,7 @@
     }
   }
 
-  &__quote {
+  &__description {
     margin: 2.5rem auto;
     font-size: 1.5rem;
     line-height: 1;
@@ -159,6 +159,10 @@
     color: $neutral-color-900;
     text-align: center;
     letter-spacing: -0.03em;
+
+    &:not(.is-active) {
+      display: none;
+    }
   }
 
   &__tabs-content {
@@ -369,7 +373,7 @@
       display: none;
     }
 
-    &__quote {
+    &__description {
       margin: 1.5rem auto;
       font-size: 1.25rem;
       line-height: 1.2;

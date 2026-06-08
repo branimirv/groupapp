@@ -1,6 +1,6 @@
 {
-  "main.css": "css/main.acc4a9a1aada2522f7dc.css",
-  "main.js": "js/main.57e791033358af41e4f8.js",
+  "main.css": "css/main.3aef18c6d116fdea4109.css",
+  "main.js": "js/main.73ddb35f6b10940b0406.js",
   "admin.js": "js/admin.31d6cfe0d16ae931b73c.js",
   "vendors.js": "js/vendors.ef217024f471b3876eaf.js",
   "images/blog-bg.png": "images/blog-bg.png",
@@ -10,6 +10,6 @@
   "images/offer-help-bg.png": "images/offer-help-bg.png",
   "images/circle-check.svg": "images/circle-check.svg",
   "images/play-button.svg": "images/play-button.svg",
-  "main.js.map": "js/main.57e791033358af41e4f8.js.map",
+  "main.js.map": "js/main.73ddb35f6b10940b0406.js.map",
   "vendors.js.map": "js/vendors.ef217024f471b3876eaf.js.map"
 }

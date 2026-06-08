@@ -145,9 +145,15 @@ get_header();
                 </ul>
                 <span class="program-delivery__tabs-indicator" aria-hidden="true"></span>
               </div>
-              <?php if ($quote = get_sub_field('quote')): ?>
-                <p class="program-delivery__quote"><?php echo esc_html($quote); ?></p>
-              <?php endif; ?>
+              <div class="program-delivery__descriptions">
+                <?php foreach ($tabs as $index => $tab): ?>
+                  <p
+                    class="program-delivery__description<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                    data-program-delivery-description
+                    <?php echo $index !== 0 ? 'hidden' : ''; ?>
+                  ><?php echo esc_html($tab['tabs_description'] ?? ''); ?></p>
+                <?php endforeach; ?>
+              </div>
               <div class="program-delivery__tabs-content">
                 <?php foreach ($tabs as $index => $tab): ?>
                   <?php $items = $tab['tabs_item']; ?>
