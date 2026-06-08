@@ -3,7 +3,7 @@
  *
  * - Desktop: clicking a `.primary-nav__trigger` opens its `.mega-menu` dropdown.
  *   Outside click and Esc close it. Only one panel is open at a time.
- * - Mobile (<= 992px): the same trigger toggles its panel as an inline accordion
+ * - Mobile (<= 1200px): the same trigger toggles its panel as an inline accordion
  *   inside the slide-in menu. Closing the hamburger also resets all panels.
  */
 export function initMegaMenu() {
@@ -13,7 +13,7 @@ export function initMegaMenu() {
   const megaTriggers = document.querySelectorAll(".primary-nav__trigger");
   const megaPanels = document.querySelectorAll(".mega-menu");
 
-  const isDesktop = () => window.innerWidth > 992;
+  const isDesktop = () => window.innerWidth > 1200;
 
   function closeAllMegaPanels() {
     megaTriggers.forEach((trigger) =>
