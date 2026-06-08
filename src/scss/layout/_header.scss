@@ -589,6 +589,7 @@ header {
     align-items: center;
     justify-content: center;
     color: $neutral-color-900;
+    white-space: nowrap;
 
     @media (max-width: 1200px) {
       height: auto;
