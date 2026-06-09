@@ -194,7 +194,6 @@ header {
     letter-spacing: 0.2px;
     text-decoration: none;
     transition: color 0.2s ease;
-    white-space: nowrap;
 
     @media (min-width: 1201px) {
       font-size: 1rem;
@@ -495,6 +494,7 @@ header {
   text-decoration: none;
   color: $neutral-color-900;
   transition: background-color 0.2s ease;
+  white-space: unset;
 
   @media (min-width: 1201px) {
     padding: 10px 12px;
