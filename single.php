@@ -131,10 +131,11 @@ function ga_chapter_slug($text, $used_slugs = array())
               <?php else : ?>
                 <?php
                 $ad_content = get_field('posts_ad', 'option');
-                if ($ad_content) {
-                  echo do_shortcode($ad_content);
-                }
-                ?>
+                if ($ad_content) : ?>
+                  <div class="post-ad desktop">
+                    <?php echo do_shortcode($ad_content); ?>
+                  </div>
+                <?php endif; ?>
               <?php endif; ?>
             </div>
           </div>
