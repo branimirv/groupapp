@@ -1129,3 +1129,210 @@ function groupapp_render_footer_menu_links( $panel ) {
     </div>
     <?php
 }
+
+/**
+ * Resolve a WordPress attachment ID from an ACF image field value.
+ *
+ * @param array|int|string|false $image ACF image array, attachment ID, or URL.
+ * @return int Attachment ID, or 0 when not resolvable.
+ */
+function groupapp_acf_get_attachment_id( $image ) {
+	if ( empty( $image ) ) {
+		return 0;
+	}
+
+	if ( is_numeric( $image ) ) {
+		return (int) $image;
+	}
+
+	if ( is_string( $image ) ) {
+		return (int) attachment_url_to_postid( $image );
+	}
+
+	if ( is_array( $image ) ) {
+		$attachment_id = (int) ( $image['ID'] ?? $image['id'] ?? 0 );
+		if ( $attachment_id ) {
+			return $attachment_id;
+		}
+
+		if ( ! empty( $image['url'] ) ) {
+			return (int) attachment_url_to_postid( $image['url'] );
+		}
+	}
+
+	return 0;
+}
+
+/**
+ * Whether an ACF image field has a resolvable attachment or fallback URL.
+ *
+ * @param array|int|string|false $image ACF image field value.
+ * @return bool
+ */
+function groupapp_acf_has_image( $image ) {
+	if ( groupapp_acf_get_attachment_id( $image ) ) {
+		return true;
+	}
+
+	return is_array( $image ) && ! empty( $image['url'] );
+}
+
+/**
+ * Output a responsive image from an ACF image field via wp_get_attachment_image().
+ *
+ * @param array|int|string $image ACF image array, attachment ID, or URL.
+ * @param string           $size  Registered image size.
+ * @param array            $args  Optional. class, alt, sizes, loading, fetchpriority, echo.
+ * @return string HTML when echo is false, otherwise empty string.
+ */
+function groupapp_acf_image( $image, $size = 'full', $args = array() ) {
+	$defaults = array(
+		'class'          => '',
+		'alt'            => '',
+		'sizes'          => '',
+		'loading'        => 'lazy',
+		'fetchpriority'  => '',
+		'echo'           => true,
+	);
+	$args = wp_parse_args( $args, $defaults );
+
+	$attachment_id = groupapp_acf_get_attachment_id( $image );
+
+	if ( is_array( $image ) && empty( $args['alt'] ) && ! empty( $image['alt'] ) ) {
+		$args['alt'] = $image['alt'];
+	}
+
+	$attr = array(
+		'class'   => $args['class'],
+		'alt'     => $args['alt'],
+		'loading' => $args['loading'],
+	);
+
+	if ( $args['sizes'] ) {
+		$attr['sizes'] = $args['sizes'];
+	}
+
+	if ( $args['fetchpriority'] ) {
+		$attr['fetchpriority'] = $args['fetchpriority'];
+	}
+
+	if ( $attachment_id ) {
+		$html = wp_get_attachment_image( $attachment_id, $size, false, $attr );
+	} elseif ( is_array( $image ) && ! empty( $image['url'] ) ) {
+		$html = sprintf(
+			'<img class="%1$s" src="%2$s" alt="%3$s" loading="%4$s"%5$s>',
+			esc_attr( $args['class'] ),
+			esc_url( $image['url'] ),
+			esc_attr( $args['alt'] ),
+			esc_attr( $args['loading'] ),
+			$args['fetchpriority'] ? ' fetchpriority="' . esc_attr( $args['fetchpriority'] ) . '"' : ''
+		);
+	} else {
+		return '';
+	}
+
+	if ( $args['echo'] ) {
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		return '';
+	}
+
+	return $html;
+}
+
+/**
+ * Output a responsive image preload link.
+ *
+ * @param array|int|string $image ACF image array, attachment ID, or URL.
+ * @param string           $size  Registered image size.
+ * @param string           $sizes sizes attribute for imagesizes.
+ * @param string           $media Optional media query attribute.
+ */
+function groupapp_render_image_preload_link( $image, $size, $sizes, $media = '' ) {
+	$attachment_id = groupapp_acf_get_attachment_id( $image );
+
+	if ( $attachment_id ) {
+		$src    = wp_get_attachment_image_url( $attachment_id, $size );
+		$srcset = wp_get_attachment_image_srcset( $attachment_id, $size );
+	} elseif ( is_array( $image ) && ! empty( $image['url'] ) ) {
+		$src    = $image['url'];
+		$srcset = '';
+	} else {
+		return;
+	}
+
+	if ( ! $src ) {
+		return;
+	}
+
+	$attrs = sprintf(
+		'rel="preload" as="image" href="%s" fetchpriority="high"',
+		esc_url( $src )
+	);
+
+	if ( $srcset ) {
+		$attrs .= sprintf( ' imagesrcset="%s"', esc_attr( $srcset ) );
+	}
+
+	if ( $sizes ) {
+		$attrs .= sprintf( ' imagesizes="%s"', esc_attr( $sizes ) );
+	}
+
+	if ( $media ) {
+		$attrs .= sprintf( ' media="%s"', esc_attr( $media ) );
+	}
+
+	echo '<link ' . $attrs . ">\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+/**
+ * Preload home page hero images for faster LCP.
+ */
+function groupapp_home_hero_preload_links() {
+	if ( ! is_page_template( 'home-page.php' ) && ! is_front_page() ) {
+		return;
+	}
+
+	$page_id = get_queried_object_id();
+	$blocks  = $page_id ? get_field( 'content_block_home', $page_id ) : null;
+
+	if ( ! is_array( $blocks ) ) {
+		return;
+	}
+
+	foreach ( $blocks as $block ) {
+		if ( ( $block['acf_fc_layout'] ?? '' ) !== 'hero_section' ) {
+			continue;
+		}
+
+		$hero_image        = $block['image'] ?? null;
+		$hero_image_mobile = $block['image_mobile'] ?? null;
+		$hero_has_desktop  = groupapp_acf_has_image( $hero_image );
+		$hero_has_mobile   = groupapp_acf_has_image( $hero_image_mobile );
+
+		if ( $hero_has_desktop ) {
+			$hero_desktop_sizes = $hero_has_mobile
+				? '(max-width: 767px) 0px, (max-width: 992px) 100vw, 1200px'
+				: '(max-width: 992px) 100vw, 1200px';
+			$hero_desktop_media = $hero_has_mobile ? '(min-width: 768px)' : '';
+
+			groupapp_render_image_preload_link( $hero_image, 'full', $hero_desktop_sizes, $hero_desktop_media );
+		}
+
+		if ( $hero_has_mobile && $hero_has_desktop ) {
+			groupapp_render_image_preload_link(
+				$hero_image_mobile,
+				'full',
+				'(max-width: 767px) min(370px, 100vw), 0px',
+				'(max-width: 767px)'
+			);
+		} elseif ( $hero_has_mobile ) {
+			groupapp_render_image_preload_link(
+				$hero_image_mobile,
+				'full',
+				'(max-width: 992px) 100vw, 1200px'
+			);
+		}
+
+		break;
+	}
+}

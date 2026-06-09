@@ -54,24 +54,39 @@ get_header();
               <?php
               $hero_image = get_sub_field('image');
               $hero_image_mobile = get_sub_field('image_mobile');
-              $hero_image_alt = get_sub_field('image')['alt'] ?? '';
+              $hero_has_desktop = groupapp_acf_has_image($hero_image);
+              $hero_has_mobile = groupapp_acf_has_image($hero_image_mobile);
+              $hero_desktop_sizes = $hero_has_mobile
+                ? '(max-width: 767px) 0px, (max-width: 992px) 100vw, 1200px'
+                : '(max-width: 992px) 100vw, 1200px';
               ?>
-              <?php if ($hero_image) : ?>
-                <img
-                  class="hero__image-img hero__image-img--desktop"
-                  src="<?php echo esc_url(is_array($hero_image) ? ($hero_image['url'] ?? '') : $hero_image); ?>"
-                  alt="<?php echo esc_attr(is_array($hero_image) ? ($hero_image['alt'] ?? $hero_image_alt) : $hero_image_alt); ?>">
-              <?php endif; ?>
-              <?php if ($hero_image_mobile) :
-                $hero_mobile_src = is_array($hero_image_mobile) ? ($hero_image_mobile['url'] ?? '') : $hero_image_mobile;
-                $hero_mobile_alt = is_array($hero_image_mobile) ? ($hero_image_mobile['alt'] ?? $hero_image_alt) : $hero_image_alt;
+              <?php if ($hero_has_desktop) : ?>
+                <?php
+                groupapp_acf_image($hero_image, 'full', array(
+                  'class'         => 'hero__image-img hero__image-img--desktop',
+                  'sizes'         => $hero_desktop_sizes,
+                  'loading'       => 'eager',
+                  'fetchpriority' => 'high',
+                ));
                 ?>
-                <?php if ($hero_mobile_src) : ?>
-                  <img
-                    class="hero__image-img hero__image-img--mobile"
-                    src="<?php echo esc_url($hero_mobile_src); ?>"
-                    alt="<?php echo esc_attr($hero_mobile_alt); ?>">
-                <?php endif; ?>
+              <?php endif; ?>
+              <?php if ($hero_has_mobile && $hero_has_desktop) : ?>
+                <?php
+                groupapp_acf_image($hero_image_mobile, 'full', array(
+                  'class'   => 'hero__image-img hero__image-img--mobile',
+                  'sizes'   => '(max-width: 767px) min(370px, 100vw), 0px',
+                  'loading' => 'eager',
+                ));
+                ?>
+              <?php elseif ($hero_has_mobile) : ?>
+                <?php
+                groupapp_acf_image($hero_image_mobile, 'full', array(
+                  'class'         => 'hero__image-img hero__image-img--desktop',
+                  'sizes'         => '(max-width: 992px) 100vw, 1200px',
+                  'loading'       => 'eager',
+                  'fetchpriority' => 'high',
+                ));
+                ?>
               <?php endif; ?>
             </div>
             <div class="hero__small-description">
