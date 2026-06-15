@@ -12,6 +12,7 @@ import { initPricingPage } from "./pricing-page";
 import { initPricingComparisonTooltips } from "./pricing-comparison-tooltip";
 import { initMegaMenu } from "./mega-menu";
 import { initFooterAccordion } from "./footer-accordion";
+import { initHeaderScroll } from "./header-scroll";
 
 window.jQuery = window.$ = $;
 
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initPricingComparisonTooltips();
   initMegaMenu();
   initFooterAccordion();
+  initHeaderScroll();
 });
 
 // // Initialize Slick Slider

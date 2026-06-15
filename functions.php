@@ -314,22 +314,23 @@ function groupapp_scripts() {
 	// RTL support
 	wp_style_add_data( 'groupapp-main', 'rtl', 'replace' );
 
+	// Vendor JavaScript must load before main (webpack split chunks).
+	$vendor_js = groupapp_get_asset_url( 'js/vendors.js' );
+	if ( $vendor_js ) {
+		wp_enqueue_script( 'groupapp-vendors', $vendor_js, array(), null, true );
+	}
+
 	// Main JavaScript bundle
 	$main_js = groupapp_get_asset_url( 'js/main.js' );
 	if ( $main_js ) {
-		wp_enqueue_script( 'groupapp-main', $main_js, array( 'jquery' ), null, true );
-		
+		$main_deps = $vendor_js ? array( 'groupapp-vendors' ) : array();
+		wp_enqueue_script( 'groupapp-main', $main_js, $main_deps, null, true );
+
 		// Add WordPress AJAX support
 		wp_localize_script( 'groupapp-main', 'groupapp_ajax', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'nonce'    => wp_create_nonce( 'groupapp_nonce' ),
 		) );
-	}
-
-	// Vendor JavaScript (if exists)
-	$vendor_js = groupapp_get_asset_url( 'js/vendors.js' );
-	if ( $vendor_js ) {
-		wp_enqueue_script( 'groupapp-vendors', $vendor_js, array(), null, true );
 	}
 
 	// Legacy navigation script fallback
@@ -344,6 +345,26 @@ function groupapp_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'groupapp_scripts' );
+
+/**
+ * Replace WordPress core jQuery with the bundled copy from vendors/main.
+ * Plugins that list jquery as a dependency still load in the correct order.
+ */
+function groupapp_jquery_shim() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$main_js = groupapp_get_asset_url( 'js/main.js' );
+	if ( ! $main_js ) {
+		return;
+	}
+
+	wp_deregister_script( 'jquery' );
+	wp_register_script( 'jquery', false, array( 'groupapp-main' ), null, true );
+	wp_enqueue_script( 'jquery' );
+}
+add_action( 'wp_enqueue_scripts', 'groupapp_jquery_shim', 100 );
 
 /**
  * Enqueue admin styles and scripts

@@ -173,6 +173,46 @@ function initTestimonialsSliderInSection(section) {
 }
 
 /**
+ * Customer stories top slider (`.slider.slick-not-init`).
+ * @param {ParentNode} [scope]
+ */
+function initCustomerStoriesSlider(scope = document) {
+  const $slider = $(scope).find(".slider.slick-not-init");
+  if (!$slider.length) return;
+
+  try {
+    $slider
+      .on("init", function () {
+        $(this).removeClass("slick-not-init").addClass("slick-initialized");
+      })
+      .slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnFocus: false,
+        pauseOnHover: false,
+        fade: true,
+        cssEase: "ease-in-out",
+        speed: 500,
+      });
+  } catch (error) {
+    console.warn("Slick slider initialization failed:", error);
+    $slider.removeClass("slick-not-init").addClass("slick-fallback");
+    return;
+  }
+
+  window.setTimeout(() => {
+    if ($slider.hasClass("slick-not-init")) {
+      $slider.removeClass("slick-not-init").addClass("slick-fallback");
+    }
+  }, 1000);
+}
+
+/**
  * Initialize all Slick sliders on the page.
  * @param {ParentNode} [scope]
  */
@@ -184,4 +224,6 @@ export function initSliders(scope = document) {
   scope
     .querySelectorAll(".testimonials")
     .forEach(initTestimonialsSliderInSection);
+
+  initCustomerStoriesSlider(scope);
 }
