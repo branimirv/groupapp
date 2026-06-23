@@ -13,6 +13,7 @@ import { initPricingComparisonTooltips } from "./pricing-comparison-tooltip";
 import { initMegaMenu } from "./mega-menu";
 import { initFooterAccordion } from "./footer-accordion";
 import { initHeaderScroll } from "./header-scroll";
+import { observeWhenVisible, runWhenIdle } from "./utils/defer-init";
 
 window.jQuery = window.$ = $;
 
@@ -26,76 +27,84 @@ import "../scss/main.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel";
 
-// Hero rotating dynamic title (ACF list)
+const LAZY_ROOT_MARGIN = "200px 0px";
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Critical for above-the-fold interaction.
   initHeroRotatingText();
-  initHeroGallerySlider();
-  initProgramDeliveryTabs();
-  // TEMP: Disabled until all integration category images are available.
-  // Re-enable when images are ready: initIntegrationsHome();
-  initIntegrationsFilter();
-  initBlogCategoryFilter();
-  initSliders();
-  initTestimonialsModals();
-  initFaqAccordion();
-  initPricingPage();
-  initPricingComparisonTooltips();
   initMegaMenu();
-  initFooterAccordion();
   initHeaderScroll();
-});
 
-// // Initialize Slick Slider
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Initialize slick sliders
-//   initSlickSliders();
-// });
+  initHeroGallerySlider();
+  initSliders();
 
-// Initialize Creators Slider
-document.addEventListener("DOMContentLoaded", function () {
-  initCreatorsSlider();
-});
+  observeWhenVisible(
+    document.querySelectorAll(".creators__gallery"),
+    (gallery) => initCreatorsSlider(gallery),
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
 
-// Initialize Community and Automations Sliders
-document.addEventListener("DOMContentLoaded", function () {
   initCommunityAndAutomationsSliders();
+
+  observeWhenVisible(
+    document.querySelectorAll(".sliderComments"),
+    () => initCommentsSlider(),
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
+
+  observeWhenVisible(
+    document.querySelectorAll(".offer--overview"),
+    () => initOfferOverviewSlider(),
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
+
+  observeWhenVisible(
+    document.querySelectorAll(".offer--customers"),
+    () => initOfferCustomersSlider(),
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
+
+  observeWhenVisible(
+    document.querySelectorAll(".offer--built-in"),
+    () => initOfferBuiltInSlider(),
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
+
+  runWhenIdle(() => {
+    initProgramDeliveryTabs();
+    // TEMP: Disabled until all integration category images are available.
+    // Re-enable when images are ready: initIntegrationsHome();
+    initIntegrationsFilter();
+    initBlogCategoryFilter();
+    initTestimonialsModals();
+    initFaqAccordion();
+    initPricingPage();
+    initPricingComparisonTooltips();
+    initFooterAccordion();
+    initOfferFaqAccordion();
+    initFeatureTabContainers();
+    initStandaloneAccordions();
+    initMobilePostAd();
+    initChaptersTOC();
+    initChaptersAccordion();
+    initChaptersAdSwap();
+  });
 });
 
-// Initialize Comments Slider (Home Page)
-document.addEventListener("DOMContentLoaded", function () {
-  initCommentsSlider();
-});
+let creatorsResizeAttached = false;
 
-// Initialize Offer Overview Slider Syncing
-document.addEventListener("DOMContentLoaded", function () {
-  initOfferOverviewSlider();
-});
+function initCreatorsSlider(creatorsGallery) {
+  if (!creatorsGallery) return;
 
-// Initialize Offer FAQ Accordion
-document.addEventListener("DOMContentLoaded", function () {
-  initOfferFaqAccordion();
-});
+  const $gallery = $(creatorsGallery);
 
-// Initialize Offer Customers Slider
-document.addEventListener("DOMContentLoaded", function () {
-  initOfferCustomersSlider();
-});
+  if (window.innerWidth <= 992) {
+    if ($gallery.hasClass("slick-initialized")) return;
 
-// Initialize Offer Built-In Slider
-document.addEventListener("DOMContentLoaded", function () {
-  initOfferBuiltInSlider();
-});
+    const totalSlides = $gallery.find("> div").length;
+    const initialSlide = Math.max(1, Math.floor(totalSlides / 2));
 
-function initCreatorsSlider() {
-  const creatorsGallery = document.querySelector(".creators__gallery");
-
-  if (creatorsGallery && window.innerWidth <= 992) {
-    // Count total slides to determine initial slide
-    const totalSlides = $(creatorsGallery).find("> div").length;
-    const initialSlide = Math.max(1, Math.floor(totalSlides / 2)); // Start from middle or at least slide 1
-
-    // Initialize slick slider on mobile
-    $(creatorsGallery).slick({
+    $gallery.slick({
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
@@ -132,64 +141,23 @@ function initCreatorsSlider() {
         },
       ],
     });
+  } else if ($gallery.hasClass("slick-initialized")) {
+    $gallery.slick("unslick");
   }
 
-  // Handle window resize
-  let resizeTimer;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      if (window.innerWidth <= 992) {
-        // Initialize slider if not already initialized
-        if (!$(creatorsGallery).hasClass("slick-initialized")) {
-          const totalSlides = $(creatorsGallery).find("> div").length;
-          const initialSlide = Math.max(1, Math.floor(totalSlides / 2));
+  if (!creatorsResizeAttached) {
+    creatorsResizeAttached = true;
 
-          $(creatorsGallery).slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            dots: false,
-            infinite: true,
-            centerMode: true,
-            centerPadding: "25%",
-            variableWidth: false,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            focusOnSelect: true,
-            initialSlide: initialSlide,
-            responsive: [
-              {
-                breakpoint: 768,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  centerMode: true,
-                  centerPadding: "20%",
-                  initialSlide: initialSlide,
-                },
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  centerMode: true,
-                  centerPadding: "15%",
-                  initialSlide: initialSlide,
-                },
-              },
-            ],
-          });
-        }
-      } else {
-        // Destroy slider on desktop
-        if ($(creatorsGallery).hasClass("slick-initialized")) {
-          $(creatorsGallery).slick("unslick");
-        }
-      }
-    }, 250);
-  });
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        document.querySelectorAll(".creators__gallery").forEach((gallery) => {
+          initCreatorsSlider(gallery);
+        });
+      }, 250);
+    });
+  }
 }
 
 function initCommunityAndAutomationsSliders() {
@@ -261,24 +229,9 @@ function initCommunityAndAutomationsSliders() {
   // Make initializeSlider available globally
   window.initializeSlider = initializeSlider;
 
-  // Initialize all sliders
-  allSliders.forEach((slider) => {
+  observeWhenVisible(allSliders, (slider) => {
     initializeSlider(slider);
-  });
-
-  // Initialize sliders for active tabs on page load
-  setTimeout(() => {
-    const communityContainer = document.querySelector(".community");
-    const automationsContainer = document.querySelector(".automations");
-
-    if (communityContainer) {
-      reinitializeActiveSliders(communityContainer);
-    }
-
-    if (automationsContainer) {
-      reinitializeActiveSliders(automationsContainer);
-    }
-  }, 100);
+  }, { rootMargin: LAZY_ROOT_MARGIN });
 
   // Function to reinitialize sliders in active tab
   function reinitializeActiveSliders(container) {
@@ -745,9 +698,7 @@ function initOfferOverviewSlider() {
   }
 }
 
-// Universal tab functionality with draggable support for all sections
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize all tab containers on the page - supporting multiple section types
+function initFeatureTabContainers() {
   const tabContainers = document.querySelectorAll(
     ".community, .lms, .automations, .membership, .branding-and-customization"
   );
@@ -950,7 +901,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
-});
+}
 
 // Accordion functionality
 function toggleAccordion(element) {
@@ -1004,15 +955,12 @@ function toggleAccordion(element) {
 // Make toggleAccordion function globally accessible
 window.toggleAccordion = toggleAccordion;
 
-// Initialize accordions on page load
-document.addEventListener("DOMContentLoaded", function () {
-  // Set first accordion in each tab as active by default for LMS, membership, and branding sections
+function initStandaloneAccordions() {
   const tabPanels = document.querySelectorAll(
     ".lms__tab-panels .tab, .membership .tab, .branding-and-customization .tab"
   );
 
   tabPanels.forEach((tab) => {
-    // Only initialize accordions for the active tab
     if (tab.classList.contains("active")) {
       const firstAccordionItem = tab.querySelector(".accordion-item");
       if (firstAccordionItem) {
@@ -1031,7 +979,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Set first accordion as active for standalone accordion sections (like thrive-with-groupapp)
   const standaloneAccordionContainers = document.querySelectorAll(
     ".thrive-with-groupapp__content"
   );
@@ -1051,7 +998,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
-});
+}
 
 // Function to initialize accordions for a specific tab
 function initializeAccordionsForTab(tab) {
@@ -1088,11 +1035,6 @@ function initializeAccordionsForTab(tab) {
 
 // Make this function available globally
 window.initializeAccordionsForTab = initializeAccordionsForTab;
-
-// Initialize Mobile Post Ad Insertion
-document.addEventListener("DOMContentLoaded", function () {
-  initMobilePostAd();
-});
 
 function initMobilePostAd() {
   const postContentLeft = document.querySelector(".blog-single__body");
@@ -1154,13 +1096,6 @@ window.addEventListener("resize", function () {
   resizeTimeout = setTimeout(function () {
     initMobilePostAd();
   }, 250);
-});
-
-// Initialize Chapters Table of Contents
-document.addEventListener("DOMContentLoaded", function () {
-  initChaptersTOC();
-  initChaptersAccordion();
-  initChaptersAdSwap();
 });
 
 // Mobile accordion functionality

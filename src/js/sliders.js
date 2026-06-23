@@ -1,6 +1,8 @@
 import $ from "jquery";
+import { observeWhenVisible } from "./utils/defer-init";
 
 const RESIZE_DEBOUNCE_MS = 150;
+const LAZY_ROOT_MARGIN = "200px 0px";
 
 const SLIDER_ARROWS = ".slider__arrows";
 const SLIDER_ARROW_PREV = ".slider__arrow--prev";
@@ -73,7 +75,7 @@ function initCaseStudiesSliderInSection(section) {
   }
 
   const refreshLayout = () => {
-    window.setTimeout(refreshPosition, 0);
+    window.requestAnimationFrame(refreshPosition);
   };
 
   $track.on("init.caseStudies afterChange.caseStudies", refreshLayout);
@@ -130,7 +132,7 @@ function initTestimonialsSliderInSection(section) {
   }
 
   const refreshLayout = () => {
-    window.setTimeout(refreshPosition, 0);
+    window.requestAnimationFrame(refreshPosition);
   };
 
   $track.on("init.testimonials afterChange.testimonials", refreshLayout);
@@ -174,11 +176,11 @@ function initTestimonialsSliderInSection(section) {
 
 /**
  * Customer stories top slider (`.slider.slick-not-init`).
- * @param {ParentNode} [scope]
+ * @param {HTMLElement} sliderEl
  */
-function initCustomerStoriesSlider(scope = document) {
-  const $slider = $(scope).find(".slider.slick-not-init");
-  if (!$slider.length) return;
+function initCustomerStoriesSliderElement(sliderEl) {
+  const $slider = $(sliderEl);
+  if (!$slider.length || !$slider.hasClass("slick-not-init")) return;
 
   try {
     $slider
@@ -213,17 +215,25 @@ function initCustomerStoriesSlider(scope = document) {
 }
 
 /**
- * Initialize all Slick sliders on the page.
+ * Initialize all Slick sliders on the page when their sections enter the viewport.
  * @param {ParentNode} [scope]
  */
 export function initSliders(scope = document) {
-  scope
-    .querySelectorAll(".case-studies")
-    .forEach(initCaseStudiesSliderInSection);
+  observeWhenVisible(
+    scope.querySelectorAll(".case-studies"),
+    initCaseStudiesSliderInSection,
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
 
-  scope
-    .querySelectorAll(".testimonials")
-    .forEach(initTestimonialsSliderInSection);
+  observeWhenVisible(
+    scope.querySelectorAll(".testimonials"),
+    initTestimonialsSliderInSection,
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
 
-  initCustomerStoriesSlider(scope);
+  observeWhenVisible(
+    scope.querySelectorAll(".slider.slick-not-init"),
+    initCustomerStoriesSliderElement,
+    { rootMargin: LAZY_ROOT_MARGIN },
+  );
 }

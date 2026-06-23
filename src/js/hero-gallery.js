@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { observeWhenVisible } from "./utils/defer-init";
 
 const HERO_GALLERY_BREAKPOINT = 992;
 const HERO_GALLERY_RESIZE_DEBOUNCE_MS = 150;
@@ -143,13 +144,23 @@ export function initHeroGallerySlider(scope = document) {
   const galleries = Array.from(scope.querySelectorAll(".hero__gallery"));
   if (!galleries.length) return;
 
-  const setup = () => {
-    galleries.forEach((gallery) => {
+  const initialized = new WeakSet();
+
+  const setupGallery = (gallery) => {
+    if (initialized.has(gallery)) {
       initHeroGallerySliderInSection($(gallery));
-    });
+      return;
+    }
+
+    initialized.add(gallery);
+    initHeroGallerySliderInSection($(gallery));
   };
 
-  setup();
+  observeWhenVisible(
+    galleries,
+    (gallery) => setupGallery(gallery),
+    { rootMargin: "300px 0px" },
+  );
 
   let resizeTimer = 0;
   let lastWindowWidth = window.innerWidth;
@@ -162,7 +173,13 @@ export function initHeroGallerySlider(scope = document) {
       lastWindowWidth = currentWidth;
 
       window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(setup, HERO_GALLERY_RESIZE_DEBOUNCE_MS);
+      resizeTimer = window.setTimeout(() => {
+        galleries.forEach((gallery) => {
+          if (initialized.has(gallery)) {
+            initHeroGallerySliderInSection($(gallery));
+          }
+        });
+      }, HERO_GALLERY_RESIZE_DEBOUNCE_MS);
     },
     { passive: true },
   );

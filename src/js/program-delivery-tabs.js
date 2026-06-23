@@ -19,11 +19,13 @@ function prefersReducedMotion() {
 function moveIndicator(nav, indicator, tab) {
   if (!indicator || !tab) return;
 
-  const navRect = nav.getBoundingClientRect();
-  const tabRect = tab.getBoundingClientRect();
+  window.requestAnimationFrame(() => {
+    const navRect = nav.getBoundingClientRect();
+    const tabRect = tab.getBoundingClientRect();
 
-  indicator.style.width = `${tabRect.width}px`;
-  indicator.style.transform = `translateX(${tabRect.left - navRect.left}px)`;
+    indicator.style.width = `${tabRect.width}px`;
+    indicator.style.transform = `translateX(${tabRect.left - navRect.left}px)`;
+  });
 }
 
 function setActiveTab(root, index) {
