@@ -421,6 +421,13 @@
 
     .wp-block-table {
       margin-bottom: 24px;
+
+      td {
+        font-size: 1rem;
+        line-height: 1.4;
+        font-weight: $font-weight-light;
+        color: $neutral-color-900;
+      }
     }
 
     .wp-block-image {

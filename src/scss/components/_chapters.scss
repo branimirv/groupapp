@@ -56,6 +56,8 @@
   &__title {
     margin-bottom: 0 !important;
     flex: 1;
+    color: $neutral-color-900;
+    font-weight: $font_weight_light;
   }
 
   &__toggle {
@@ -121,17 +123,19 @@
     .chapters-toc__link {
       color: $neutral-color-900;
       font-size: 1.25rem;
-      font-weight: $font_weight_semibold;
+      font-weight: $font_weight_regular;
     }
 
     .chapters-toc__desc {
-      color: $neutral-color-700;
+      color: $neutral-color-600;
       font-size: 1rem;
       line-height: 1.4;
       font-weight: $font_weight_light;
       height: 0;
       overflow: hidden;
-      transition: height 0.3s ease, opacity 0.3s ease;
+      transition:
+        height 0.3s ease,
+        opacity 0.3s ease;
       opacity: 0;
     }
   }
@@ -159,7 +163,9 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
       will-change: opacity;
     }
 
@@ -173,7 +179,9 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.25s ease, visibility 0.25s ease;
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease;
       }
 
       .chapters-toc.desktop {
@@ -186,7 +194,9 @@
     &.has-ad {
       .ad-with-chapter,
       .chapters-toc.desktop {
-        transition: opacity 0.25s ease, visibility 0.25s ease;
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease;
         will-change: opacity;
       }
 
